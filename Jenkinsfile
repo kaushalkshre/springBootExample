@@ -1,6 +1,6 @@
 pipeline {
     agent any
-   
+
     stages {
         stage ('Initialize') {
             steps {
@@ -12,14 +12,27 @@ pipeline {
         }
 
         stage ('Build') {
-            steps {
-                sh 'mvn clean install' 
-            }
-            post {
-                success {
-                    junit 'target/surefire-reports/**/*.xml' 
-                }
-            }
+	            steps {
+	                sh 'mvn clean install' 
+	            }           
+         }
+            
+        stage('Docker image build'){
+        	steps {
+        		sh 'docker build -t firstApp:1.0.0 .'
+        	}
+        }
+        	
+       	stage('Deploy docker image'){
+       		steps{
+       			sh 'docker run -d -p 7070:7070 firstApp:1.0.0'
+       		}
+        }
+        
+        stage('Health check'){
+        	steps {
+        	 sh 'curl http://localhost:7070/actuator/health'
+        	}
         }
     }
 }
