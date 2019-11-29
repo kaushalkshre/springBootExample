@@ -29,11 +29,7 @@ pipeline {
        		}
         }
         
-	stage('Health Check'){
-       		steps{
-       			sh 'curl -m 10 34.67.218.91:7070/actuator/health'
-       		}
-        }
+	
        
     }
 }
