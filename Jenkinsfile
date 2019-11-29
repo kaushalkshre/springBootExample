@@ -29,10 +29,6 @@ pipeline {
        		}
         }
         
-        stage('Health check'){
-        	steps {
-        	
-        	}
-        }
+       
     }
 }
