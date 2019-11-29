@@ -19,13 +19,13 @@ pipeline {
             
         stage('Docker image build'){
         	steps {
-        		sh 'docker build -t firstApp:1.0.0 .'
+        		sh 'docker build -t firstapp:1.0.0 .'
         	}
         }
         	
        	stage('Deploy docker image'){
        		steps{
-       			sh 'docker run -d -p 7070:7070 firstApp:1.0.0'
+       			sh 'docker run -d -p 7070:7070 firstapp:1.0.0'
        		}
         }
         
