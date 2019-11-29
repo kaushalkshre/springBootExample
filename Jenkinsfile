@@ -31,7 +31,7 @@ pipeline {
         
         stage('Health check'){
         	steps {
-        	 sh 'curl http://localhost:7070/actuator/health'
+        	 sh 'curl http://34.67.218.91/:7070/actuator/health'
         	}
         }
     }
