@@ -4,29 +4,25 @@ pipeline {
     stages {
         stage ('Initialize') {
             steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
+                echo "intializing the app"
             }
         }
 
         stage ('Build') {
-	            steps {
-	                sh 'mvn clean install' 
-	            }           
+		steps{
+	           echo "building the app"  
+		}	
          }
             
-        stage('Docker image build'){
+        stage('Test'){
         	steps {
-        		sh 'docker build -t firstapp:1.0.0 .'
+        		echo "testing the app"
         	}
         }
         	
        	stage('Deploy docker image'){
-       		steps{
-       			sh 'docker run -d -p 7070:7070 firstapp:1.0.0'
-       		}
+		steps{
+			echo "deploying the app"
         }
         
 	
