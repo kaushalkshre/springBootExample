@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools{
-        maven 'Maven 3.8. 1'
+        maven 'Maven 3.6.3'
         jdk 'jdk8'
     }
 
@@ -10,6 +10,10 @@ pipeline {
         stage ('Initialize') {
             steps {
                 echo "intializing the app"
+                 sh '''
+                             echo "PATH = ${PATH}"
+                             echo "M2_HOME = ${M2_HOME}"
+                    '''
             }
         }
 
